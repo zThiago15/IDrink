@@ -12,4 +12,11 @@ const allUsers = async (req, res, _next) => {
   return res.status(200).json(users);
 };
 
-module.exports = { createUser, allUsers };
+const deleteUser = async (req, res, _next) => {
+  const userInfo = req.body;
+  await adminService.deleteUser(userInfo);
+
+  return res.status(204).end();
+};
+
+module.exports = { createUser, allUsers, deleteUser };
