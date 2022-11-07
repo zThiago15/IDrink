@@ -6,6 +6,7 @@ const productsRouter = require('../routes/productsRouter');
 const registerRoute = require('../routes/registerRoute');
 const customerRoutes = require('../routes/customerRoutes');
 const userSellersRouter = require('../routes/userSellersRouter');
+const userAdminRoutes = require('../routes/adminRouter');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use('/products', productsRouter);
 app.use('/register', registerRoute);
 app.use('/seller', userSellersRouter);
 app.use('/customer', customerRoutes);
+app.use('/admin', userAdminRoutes);
 app.use(express.static('public'));
 
 app.use((err, _req, res, _next) => res.status(err.code || 500).json({ error: `${err.message}` }));
