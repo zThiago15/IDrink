@@ -1,6 +1,6 @@
 const md5 = require('md5');
 const { UserModel } = require('../database/models');
-const ErrorAlreadyExists = require('../errors/ErrorAlreadyExists');
+const ErrorConflict = require('../errors/ErrorConflict');
 require('express-async-errors');
 
 const createUser = async (userInfo) => {  
@@ -10,7 +10,7 @@ const createUser = async (userInfo) => {
   const user = await UserModel.findOne({ where: { email, password: cryptedPassword } });
 
   if (user) {
-    throw new ErrorAlreadyExists('User already exists');
+    throw new ErrorConflict('User already exists');
   }
 
   await UserModel.create({ 
