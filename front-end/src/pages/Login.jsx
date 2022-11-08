@@ -33,8 +33,15 @@ export default function Login() {
   }, [user]);
 
   useEffect(() => {
-    if (userStorage.token) navigate('/customer/products');
-  }, [userStorage.token, navigate]);
+    if (!userStorage) return;
+    if (user.role === 'custumer') {
+      navigate('/customer/products');
+    } else if (user.role === 'seller') {
+      navigate('/seller/orders');
+    } else if (user.role === 'administrator') {
+      navigate('/admin/manage');
+    }
+  }, [navigate]);
 
   const handleInput = ({ target }) => {
     const { name, value } = target;
@@ -47,7 +54,13 @@ export default function Login() {
       dispatch(actionUserLogin(response));
       localStorage.setItem('user', JSON.stringify(response));
 
-      navigate('/');
+      if (response.role === 'customer') {
+        navigate('/customer/products');
+      } else if (response.role === 'seller') {
+        navigate('/seller/orders');
+      } else {
+        navigate('/admin/manage');
+      }
     } catch (error) {
       if (error.response.status === NOT_FOUND) {
         return setAlert('Usuário não encontrado!');

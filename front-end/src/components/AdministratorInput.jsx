@@ -26,7 +26,12 @@ export default function RegisterForm() {
     event.preventDefault();
     try {
       const { token } = JSON.parse(localStorage.getItem('user'));
-      const newUser = await adminCreateUser({ email, password, userName, role }, token);
+      const newUser = await adminCreateUser({
+        userEmail,
+        userPassword,
+        userName,
+        role,
+      }, token);
       if (Number(newUser.status) === CONFLICT) {
         setError(true);
       }
