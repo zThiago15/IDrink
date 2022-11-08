@@ -8,7 +8,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav>
+    <nav className="flex bg-red-600">
       {role === 'customer' && (
         <li>
           <a href="/customer/products" data-testid={ datatestids[11] }>
