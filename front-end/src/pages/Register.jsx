@@ -20,8 +20,11 @@ export default function Register() {
   useEffect(() => {
     const validateInputs = () => {
       const regexEmail = /\S+@\S+\.\S+/;
-      if (regexEmail.test(user.email) && user.password.length >= MIN_LENGTH_PASSWORD
-      && user.name.length >= MIN_LENGTH_NAME) {
+      if (
+        regexEmail.test(user.email)
+        && user.password.length >= MIN_LENGTH_PASSWORD
+        && user.name.length >= MIN_LENGTH_NAME
+      ) {
         return setDisableBtnLogin(false);
       }
       return setDisableBtnLogin(true);
@@ -56,15 +59,12 @@ export default function Register() {
       text-[#404140] font-bold tracking-wider"
       >
         Cadastro
-
       </h1>
       <form
         className="mx-auto flex flex-col md:w-1/2
       max-w-[600px] w-3/4"
       >
-        <div
-          className="flex flex-col items-center py-6 w-full"
-        >
+        <div className="flex flex-col items-center py-6 w-full">
           <label className="w-full" htmlFor="name">
             Nome
             <input
@@ -106,7 +106,6 @@ export default function Register() {
               value={ user.password }
             />
           </label>
-
         </div>
 
         <div className="w-full">
@@ -121,9 +120,7 @@ hover:opacity-80 mb-1 md:text-[21px] text-md cursor-pointer"
           >
             Cadastrar
           </button>
-          <Link
-            to="/login"
-          >
+          <Link to="/login">
             <button
               type="button"
               className="bg-[#f81127] rounded
@@ -132,9 +129,7 @@ hover:opacity-80 mb-1 md:text-[21px] text-md cursor-pointer"
             >
               Já tenho uma conta !
             </button>
-
           </Link>
-
         </div>
 
         {alert && (
@@ -144,7 +139,6 @@ hover:opacity-80 mb-1 md:text-[21px] text-md cursor-pointer"
             data-testid={ dataTestIds[10] }
           >
             {alert}
-
           </p>
         )}
       </form>
