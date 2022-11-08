@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authenticationUser } from '../services/user';
 import { actionUserLogin } from '../redux/userSlice';
+import dataTestIds from '../utils/dataTestIds';
 
 export default function Login() {
   const [user, setUser] = useState({
@@ -64,7 +65,7 @@ export default function Login() {
           <input
             type="email"
             name="email"
-            data-testid="common_login__input-email"
+            data-testid={ dataTestIds[1] }
             onChange={ handleInput }
             value={ user.email }
           />
@@ -75,7 +76,7 @@ export default function Login() {
           <input
             type="password"
             name="password"
-            data-testid="common_login__input-password"
+            data-testid={ dataTestIds[2] }
             onChange={ handleInput }
             value={ user.password }
           />
@@ -84,19 +85,17 @@ export default function Login() {
         <button
           type="button"
           disabled={ disabledBtnLogin }
-          data-testid="common_login__button-login"
+          data-testid={ dataTestIds[3] }
           onClick={ newSession }
         >
           Login
         </button>
         <Link to="/register">
-          <button type="button" data-testid="common_login__button-register">
-            register
+          <button type="button" data-testid={ dataTestIds[4] }>
+            Não tenho uma conta
           </button>
         </Link>
-        {alert && (
-          <p data-testid="common_login__element-invalid-email">{alert}</p>
-        )}
+        {alert && <p data-testid={ dataTestIds[5] }>{alert}</p>}
       </form>
     </div>
   );

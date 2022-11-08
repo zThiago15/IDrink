@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getUserSalles } from '../services/user';
+import dataTestIds from '../utils/dataTestIds';
 
 export default function CheckoutDetails({ props }) {
   const [userSelles, setUserSelles] = useState([]);
@@ -21,10 +22,10 @@ export default function CheckoutDetails({ props }) {
   return (
     <div>
       <h3>Detalhes e Endereços para Entrega</h3>
-      <label htmlFor="sale">
+      <label htmlFor="seller">
         P. Vendedora Responsável
         <select
-          data-testid="customer_checkout__select-seller"
+          data-testid={ dataTestIds[29] }
           onChange={ handdleInput }
           name="seller"
         >
@@ -40,7 +41,7 @@ export default function CheckoutDetails({ props }) {
       <label htmlFor="address">
         Endereço
         <input
-          data-testid="customer_checkout__input-address"
+          data-testid={ dataTestIds[30] }
           type="text"
           onChange={ handdleInput }
           name="deliveryAddress"
@@ -50,7 +51,7 @@ export default function CheckoutDetails({ props }) {
       <label htmlFor="number">
         Número
         <input
-          data-testid="customer_checkout__input-address-number"
+          data-testid={ dataTestIds[31] }
           type="text"
           onChange={ handdleInput }
           name="deliveryNumber"

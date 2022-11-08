@@ -6,6 +6,7 @@ import CarShop from '../components/CarShop';
 import CheckoutDetails from '../components/CheckoutDetails';
 import { createOrder } from '../services/customerOrders';
 import { selectProduct } from '../redux/userProducts';
+import datatestids from '../utils/dataTestIds';
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -39,11 +40,7 @@ export default function Checkout() {
       <CarShop />
       <CheckoutDetails props={ { infos, setInfos } } />
 
-      <button
-        type="button"
-        data-testid="customer_checkout__button-submit-order"
-        onClick={ finalizedBuy }
-      >
+      <button type="button" data-testid={ datatestids[32] } onClick={ finalizedBuy }>
         Finalizar Pedido
       </button>
     </div>
