@@ -33,7 +33,7 @@ export default function CarShop() {
         </thead>
         <thead>
           {products.map((product, i) => (
-            <tr key={ index }>
+            <tr key={ i }>
               <td data-testid={ `${dataTestIds[22]}${i}` }>{i + 1}</td>
               <td data-testid={ `${dataTestIds[23]}${i}` }>{product.name}</td>
               <td data-testid={ `${dataTestIds[24]}${i}` }>{product.quantity}</td>

@@ -85,7 +85,7 @@ export default function Register() {
         <button
           type="button"
           disabled={ disabledBtnLogin }
-          data-testid={ dataTestIds[6] }
+          data-testid={ dataTestIds[9] }
           onClick={ newAccount }
         >
           Cadastrar
