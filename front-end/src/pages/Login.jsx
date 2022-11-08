@@ -95,7 +95,7 @@ export default function Login() {
               type="password"
               placeholder="Senha"
               name="password"
-              data-testid="common_login__input-password"
+              data-testid={ dataTestIds[2] }
               onChange={ handleInput }
               value={ user.password }
             />
@@ -108,7 +108,7 @@ export default function Login() {
             hover:opacity-80 mb-1 md:text-[21px] text-md cursor-pointer"
             type="button"
             disabled={ disabledBtnLogin }
-            data-testid="common_login__button-login"
+            data-testid={ dataTestIds[3] }
             onClick={ newSession }
           >
             Login
@@ -119,7 +119,7 @@ export default function Login() {
             text-white drop-shadow-md w-full px-10 py-2
             hover:opacity-80 md:text-[21px] text-md "
               type="button"
-              data-testid="common_login__button-register"
+              data-testid={ dataTestIds[4] }
             >
               Register
             </button>

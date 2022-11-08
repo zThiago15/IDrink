@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { newRegister } from '../services/user';
-import dataTestIds from '../utils/dataTestIds';
 import imgAccount from '../imgs/Account.gif';
+import dataTestIds from '../utils/dataTestIds';
 
 export default function Register() {
   const [user, setUser] = useState({
