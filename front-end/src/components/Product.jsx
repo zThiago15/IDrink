@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionAddProduct, actionUpdateProduct } from '../redux/userProducts';
+import dataTestIds from '../utils/dataTestIds';
 
 export default function Product(props) {
   const { product, totalPrice, totalPriceFunc } = props;
@@ -14,32 +15,21 @@ export default function Product(props) {
 
   const modifyProductSaved = (currentQuantity, productSaved) => {
     if (currentQuantity === 0) {
-      // let indexProduct;
-      // products.forEach((data, index) => {
-      //   if (data.name === productSaved.name) {
-      //     indexProduct = index;
-      //   }
-      // });
-      // const copyProducts = [...products];
-      // console.log(copyProducts);
-
-      // const productRemoved = copyProducts.splice(1, indexProduct);
-      // console.log(productRemoved);
-
       return products.filter((prod) => prod.name !== productSaved.name);
     }
 
     const productUpdated = products.map((data) => {
-      const dataToSave = data.name === name
-        ? { ...data, quantity: currentQuantity } : data;
-      return dataToSave;
+      const dataSave = data.name === name ? { ...data, quantity: currentQuantity } : data;
+      return dataSave;
     });
 
     return productUpdated;
   };
 
   const saveItems = (currentQuantity) => {
-    const productSaved = products.find(({ name: nameSaved }) => nameSaved === name);
+    const productSaved = products.find(
+      ({ name: nameSaved }) => nameSaved === name,
+    );
 
     if (!productSaved) {
       const productCartData = { name, price, quantity: currentQuantity };
@@ -71,7 +61,7 @@ export default function Product(props) {
     }
 
     const addTotal = totalPrice
-      + (target.value * Number(priceProduct) - (quantity * Number(priceProduct)));
+      + (target.value * Number(priceProduct) - quantity * Number(priceProduct));
     totalPriceFunc(addTotal);
     setQuantity(Number(target.value));
 
@@ -80,12 +70,10 @@ export default function Product(props) {
 
   return (
     <div key={ id }>
-      <p data-testid={ `customer_products__element-card-price-${id}` }>
-        {price.replace('.', ',')}
-      </p>
-      <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
+      <p data-testid={ `${dataTestIds[16]}${id}` }>{price.replace('.', ',')}</p>
+      <p data-testid={ `${dataTestIds[15]}${id}` }>{name}</p>
       <img
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
+        data-testid={ `${dataTestIds[17]}${id}` }
         src={ urlImage }
         alt={ name }
         width="240px"
@@ -94,7 +82,7 @@ export default function Product(props) {
         <button
           type="button"
           onClick={ () => removeItem(price) }
-          data-testid={ `customer_products__button-card-rm-item-${id}` }
+          data-testid={ `${dataTestIds[19]}${id}` }
         >
           -
         </button>
@@ -102,13 +90,13 @@ export default function Product(props) {
           type="number"
           value={ quantity }
           min="0"
-          data-testid={ `customer_products__input-card-quantity-${id}` }
+          data-testid={ `${dataTestIds[20]}${id}` }
           onChange={ (e) => defineQuantity(e, price) }
         />
         <button
           type="button"
           onClick={ () => addItem(price) }
-          data-testid={ `customer_products__button-card-add-item-${id}` }
+          data-testid={ `${dataTestIds[18]}${id}` }
         >
           +
         </button>

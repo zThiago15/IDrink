@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import Product from '../components/Product';
 import getProducts from '../services/product';
+import datatestids from '../utils/dataTestIds';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -28,21 +29,19 @@ export default function Products() {
   return (
     <div>
       <NavBar />
-      {
-        products.map((product) => (
-          <Product
-            key={ product.id }
-            product={ product }
-            totalPriceFunc={ setTotalPrice }
-            totalPrice={ totalPrice }
-          />
-        ))
-      }
+      {products.map((product) => (
+        <Product
+          key={ product.id }
+          product={ product }
+          totalPriceFunc={ setTotalPrice }
+          totalPrice={ totalPrice }
+        />
+      ))}
       <button
         onClick={ () => checkoutPage() }
         type="button"
         disabled={ totalPrice === 0 }
-        data-testid="customer_products__button-cart"
+        data-testid={ datatestids[21] }
       >
         <p data-testid="customer_products__checkout-bottom-value">
           {totalPrice.toFixed(2).replace('.', ',')}

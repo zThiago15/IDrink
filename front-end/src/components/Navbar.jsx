@@ -1,3 +1,5 @@
+import datatestids from '../utils/dataTestIds';
+
 export default function NavBar() {
   const { name, role } = JSON.parse(localStorage.getItem('user'));
 
@@ -9,10 +11,7 @@ export default function NavBar() {
     <nav>
       {role === 'customer' && (
         <li>
-          <a
-            href="/customer/products"
-            data-testid="customer_products__element-navbar-link-products"
-          >
+          <a href="/customer/products" data-testid={ datatestids[11] }>
             Produtos
           </a>
         </li>
@@ -20,25 +19,18 @@ export default function NavBar() {
       <li>
         <a
           href={ role === 'customer' ? '/customer/orders' : '/seller/orders' }
-          data-testid="customer_products__element-navbar-link-orders"
+          data-testid={ datatestids[12] }
         >
           {role === 'customer' ? 'Meus pedidos' : 'Pedidos'}
         </a>
       </li>
       <li>
-        <a
-          data-testid="customer_products__element-navbar-user-full-name"
-          href="#t"
-        >
+        <a data-testid={ datatestids[13] } href="#t">
           {name}
         </a>
       </li>
       <li>
-        <a
-          data-testid="customer_products__element-navbar-link-logout"
-          href="/login"
-          onClick={ () => logout() }
-        >
+        <a data-testid={ datatestids[14] } href="/login" onClick={ () => logout() }>
           Sair
         </a>
       </li>
