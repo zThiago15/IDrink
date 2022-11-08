@@ -6,7 +6,7 @@ import { mockUser, passwordValid, errorNotFound } from './mocks/user.mock';
 
 import renderWithRouter from './utils/renderWithRouter';
 
-const mockApi = require('../services/user');
+import * as mockApi from '../services/user';
 
 describe('Testa o correto funcionamento da pagina de Login', () => {
   afterEach(() => {
