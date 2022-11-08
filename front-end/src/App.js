@@ -26,6 +26,7 @@ function App() {
         element={ <CustomerOrderDetails /> }
       />
       <Route path="/seller/orders" element={ <SellerOrders /> } />
+      <Route path="/admin/manage" element={ <Administrator /> } />
       <Route
         path="/"
         element={
@@ -34,7 +35,6 @@ function App() {
           </FlowControl>
         }
       />
-      <Route path="/admin/manage" element={ <Administrator /> } />
     </Routes>
   );
 }

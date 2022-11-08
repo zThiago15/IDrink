@@ -33,15 +33,15 @@ export default function Login() {
   }, [user]);
 
   useEffect(() => {
-    if (!userStorage) return;
-    if (user.role === 'custumer') {
+    if (userStorage === 'notFound') return;
+    if (userStorage.role === 'customer') {
       navigate('/customer/products');
-    } else if (user.role === 'seller') {
+    } else if (userStorage.role === 'seller') {
       navigate('/seller/orders');
-    } else if (user.role === 'administrator') {
+    } else if (userStorage.role === 'administrator') {
       navigate('/admin/manage');
     }
-  }, [navigate]);
+  }, [navigate, userStorage.role, userStorage]);
 
   const handleInput = ({ target }) => {
     const { name, value } = target;
