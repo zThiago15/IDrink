@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { newRegister } from '../services/user';
+import dataTestIds from '../utils/dataTestIds';
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -13,7 +14,7 @@ export default function Register() {
   const [disabledBtnLogin, setDisableBtnLogin] = useState(true);
   const MIN_LENGTH_PASSWORD = 6;
   const MIN_LENGTH_NAME = 12;
-  const CONFLIT = 409;
+  const CONFLICT_ERROR = 409;
 
   useEffect(() => {
     const validateInputs = () => {
@@ -37,7 +38,7 @@ export default function Register() {
       await newRegister(user);
       navigate('/customer/products');
     } catch (error) {
-      if (error.response.status === CONFLIT) {
+      if (error.response.status === CONFLICT_ERROR) {
         return setAlert('Usuário já cadastrado!');
       }
       setAlert('Aconteceu algum problema, tente novamente mais tarde!');
@@ -49,11 +50,11 @@ export default function Register() {
       <h1>Cadastro</h1>
       <form>
         <label htmlFor="name">
-          Nome
+          Nome Completo
           <input
             type="text"
             name="name"
-            data-testid="common_register__input-name"
+            data-testid={ dataTestIds[6] }
             onChange={ handleInput }
             value={ user.name }
           />
@@ -64,7 +65,7 @@ export default function Register() {
           <input
             type="text"
             name="email"
-            data-testid="common_register__input-email"
+            data-testid={ dataTestIds[7] }
             onChange={ handleInput }
             value={ user.email }
           />
@@ -75,7 +76,7 @@ export default function Register() {
           <input
             type="text"
             name="password"
-            data-testid="common_register__input-password"
+            data-testid={ dataTestIds[8] }
             onChange={ handleInput }
             value={ user.password }
           />
@@ -84,13 +85,13 @@ export default function Register() {
         <button
           type="button"
           disabled={ disabledBtnLogin }
-          data-testid="common_register__button-register"
+          data-testid={ dataTestIds[6] }
           onClick={ newAccount }
         >
           Cadastrar
         </button>
         <Link to="/login">Já tenho uma conta</Link>
-        {alert && <p data-testid="common_register__element-invalid_register">{alert}</p>}
+        {alert && <p data-testid={ dataTestIds[10] }>{alert}</p>}
       </form>
     </div>
   );
