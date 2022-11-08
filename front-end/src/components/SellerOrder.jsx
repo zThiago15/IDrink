@@ -1,6 +1,6 @@
-import moment from 'moment';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 import dataTestIds from '../utils/dataTestIds';
 
 export default function SellerOrder(props) {
