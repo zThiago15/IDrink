@@ -19,7 +19,7 @@
   "paths": {
     "/login": {
       "post": {
-        "sumary": "login dos usuários",
+        "summary": "Endpoint para login",
         "description": "Esta rota valida as informações < email > e < senha > fornecidos com as informações no banco de dados",
         "tags": ["Users"],
         "requestBody": {
@@ -79,8 +79,8 @@
     },
     "/register": {
       "post": {
-        "sumary": "login dos usuários",
-        "description": "Esta rota valida as informações < email > e < senha > fornecidos com as informações no banco de dados",
+        "summary": "Endpoint para registro de usuários",
+        "description": "Este endpoint registra as informações fornecidas < email >, < senha > e < nome > no banco de dados",
         "tags": ["Users"],
         "requestBody": {
           "content": {
@@ -123,8 +123,8 @@
     },
     "/seller": {
       "get": {
-        "sumary": "Vendedores",
-        "description": "Esta rota trás o < id > e < nome > dos vendedores no banco de dados",
+        "summary": "Endpoint que retorna todos todos os vendedores",
+        "description": "Este endpoint trás o < id > e < nome > dos vendedores no banco de dados",
         "tags": ["Sellers"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
@@ -146,8 +146,8 @@
     },
     "/seller/orders": {
       "get": {
-        "sumary": "Pedidos",
-        "description": "Esta rota trás os pedidos associados ao vendedor no banco de dados",
+        "summary": "Endpoint que retorna todos os pedidos associados ao vendedor",
+        "description": "Endpoint que retorna todos os pedidos associados ao vendedor no banco de dados",
         "tags": ["Sellers"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
@@ -169,8 +169,8 @@
     },
     "/seller/orders/:orderId": {
       "get": {
-        "sumary": "Pedidos",
-        "description": "Esta rota trás detalhes do pedido passado por parâmetro",
+        "summary": "Endpoint que retorna detalhes do pedido passado por parâmetro",
+        "description": "Endpoint que retorna detalhes do pedido passado por parâmetro",
         "tags": ["Sellers"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
@@ -195,8 +195,8 @@
         }
       },
       "put": {
-        "sumary": "Status",
-        "description": "Esta rota altera o status do pedido",
+        "summary": "Endpoint que altera status de um pedido",
+        "description": "Este endpoint altera o status de um pedido passado por parâmetro",
         "tags": ["Sellers"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
@@ -238,8 +238,8 @@
     },
     "/products": {
       "get": {
-        "sumary": "Todos os produtos",
-        "description": "Esta rota trás todos os produtos no banco de dados",
+        "summary": "Endpoint que retorna todos os produtos",
+        "description": "Este endpoint retorna todos os produto no banco de dados",
         "tags": ["Products"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
@@ -261,8 +261,8 @@
     },
     "/products/:productId": {
       "get": {
-        "sumary": "Todos os produtos",
-        "description": "Esta rota trás todos os produtos no banco de dados",
+        "summary": "Endpoint que retorna um unico produto",
+        "description": "Este endpoint retorna um unico produto de acordo com o productId passado por parâmetro",
         "tags": ["Products"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
