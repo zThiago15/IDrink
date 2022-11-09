@@ -17,9 +17,9 @@ export const getAllOrders = async () => {
 export const changeStatusDB = async ({ orderId, status }) => {
   const { token } = JSON.parse(localStorage.getItem('user')) || '';
   api.defaults.headers.authorization = token;
-  const response = await api.put('/seller/status', {
-    orderId,
+  const response = await api.put(`/seller/orders/${orderId}`, {
     status,
   });
+
   return response.data;
 };

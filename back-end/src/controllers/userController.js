@@ -15,4 +15,5 @@ const userController = {
     return res.status(201).json(user);
   },
 };
+
 module.exports = userController;

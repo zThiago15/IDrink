@@ -1,0 +1,505 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API IDrinks",
+    "description": "Responsável por validar informações de usuários e pelo controle de vendas de bebidas.",
+    "contact": {
+      "name": "André Marquez",
+      "email": "andremarquezz@gmail.com",
+      "url": "https://www.linkedin.com/in/andremarquezz/"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:3001",
+      "description": "API de produção"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "sumary": "login dos usuários",
+        "description": "Esta rota valida as informações < email > e < senha > fornecidos com as informações no banco de dados",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/userLogged"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Senha invalida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid password"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Campos inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid fields"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "sumary": "login dos usuários",
+        "description": "Esta rota valida as informações < email > e < senha > fornecidos com as informações no banco de dados",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userRegister"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/userLogged"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Usuario já cadastrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Conflict"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/seller": {
+      "get": {
+        "sumary": "Vendedores",
+        "description": "Esta rota trás o < id > e < nome > dos vendedores no banco de dados",
+        "tags": ["Sellers"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/sellers"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/seller/orders": {
+      "get": {
+        "sumary": "Pedidos",
+        "description": "Esta rota trás os pedidos associados ao vendedor no banco de dados",
+        "tags": ["Sellers"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ordersSeller"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/seller/orders/:orderId": {
+      "get": {
+        "sumary": "Pedidos",
+        "description": "Esta rota trás detalhes do pedido passado por parâmetro",
+        "tags": ["Sellers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orderDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "sumary": "Status",
+        "description": "Esta rota altera o status do pedido",
+        "tags": ["Sellers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "Pendente"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orderDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "sumary": "Todos os produtos",
+        "description": "Esta rota trás todos os produtos no banco de dados",
+        "tags": ["Products"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/allProducts"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/:productId": {
+      "get": {
+        "sumary": "Todos os produtos",
+        "description": "Esta rota trás todos os produtos no banco de dados",
+        "tags": ["Products"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "Id do produto",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/oneProduct"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Product does not exist"
+                  }
+                }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "userLogin": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "zebirita@email.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "$#zebirita#$"
+          }
+        }
+      },
+      "userRegister": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "zebirita@email.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "$#zebirita#$"
+          },
+          "name": {
+            "type": "string",
+            "example": "Cliente Zé Birita"
+          }
+        }
+      },
+      "userLogged": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Cliente Zé Birita"
+          },
+          "email": {
+            "type": "string",
+            "example": "zebirita@email.com"
+          },
+          "role": {
+            "type": "string",
+            "example": "customer"
+          },
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjY4MDE4ODM2LCJleHAiOjE2Njg2MjM2MzZ9.5WgExKGWt9AIqHT_PGAaTixnSPVUMluAsa4FiQYGLVU"
+          }
+        }
+      },
+      "sellers": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 2
+          },
+          "name": {
+            "type": "string",
+            "example": "Fulana Pereira"
+          }
+        }
+      },
+      "ordersSeller": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "status": {
+            "type": "string",
+            "example": "Pendente"
+          },
+          "saleDate": {
+            "type": "string",
+            "example": "2022-11-09T19:20:34.000Z"
+          },
+          "totalPrice": {
+            "type": "string",
+            "example": "45.37"
+          },
+          "deliveryAddress": {
+            "type": "string",
+            "example": "Vale do Silício"
+          },
+          "deliveryNumber": {
+            "type": "number",
+            "example": 58
+          }
+        }
+      },
+      "orderDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "status": {
+            "type": "string",
+            "example": "Pendente"
+          },
+          "saleDate": {
+            "type": "string",
+            "example": "2022-11-09T19:20:34.000Z"
+          },
+          "totalPrice": {
+            "type": "string",
+            "example": "45.37"
+          },
+          "seller": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "Fulana Pereira"
+              }
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Stella Artois 275ml"
+                },
+                "price": {
+                  "type": "string",
+                  "example": "3.49"
+                },
+                "itemQuantity": {
+                  "type": "object",
+                  "properties": {
+                    "quantity": { "type": "number", "example": 13 }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "allProducts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Skol Lata 250ml"
+          },
+          "price": {
+            "type": "string",
+            "example": "2.20"
+          },
+          "urlImage": {
+            "type": "string",
+            "example": "http://localhost:3001/images/skol_lata_350ml.jpg"
+          }
+        }
+      },
+      "oneProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Skol Lata 250ml"
+          },
+          "price": {
+            "type": "string",
+            "example": "2.20"
+          },
+          "urlImage": {
+            "type": "string",
+            "example": "http://localhost:3001/images/skol_lata_350ml.jpg"
+          }
+        }
+      }
+    }
+  }
+}

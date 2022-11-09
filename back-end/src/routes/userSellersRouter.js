@@ -5,12 +5,16 @@ const customerController = require('../controllers/customerController');
 
 const router = Router();
 
-router.get('/getSellers', userSellersController.getUserSalles);
+router.get('/', userSellersController.getUserSalles);
 
 router.get('/orders', verifyTokenJWT, userSellersController.getAllOrders);
 
 router.get('/orders/:orderId', verifyTokenJWT, customerController.getOrder);
 
-router.put('/status', verifyTokenJWT, userSellersController.changeStatus);
+router.put(
+  '/orders/:orderId',
+  verifyTokenJWT,
+  userSellersController.changeStatus,
+);
 
 module.exports = router;
