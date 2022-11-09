@@ -35,6 +35,7 @@ function App() {
           </FlowControl>
         }
       />
+      <Route path="/admin/manage" element={ <Administrator /> } />
     </Routes>
   );
 }
