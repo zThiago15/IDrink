@@ -104,11 +104,26 @@ export default function Login() {
           Login
         </button>
         <Link to="/register">
-          <button type="button" data-testid={ dataTestIds[4] }>
-            Não tenho uma conta
+          <button
+            className="bg-[#f81127] rounded
+            text-white drop-shadow-md w-full px-10 py-2
+            hover:opacity-80 md:text-[21px] text-md "
+            type="button"
+            data-testid={ dataTestIds[4] }
+          >
+            Register
           </button>
         </Link>
-        {alert && <p data-testid={ dataTestIds[5] }>{alert}</p>}
+
+        {alert && (
+          <p
+            className='mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3
+            rounded relative" role="alert"'
+            data-testid={ dataTestIds[5] }
+          >
+            {alert}
+          </p>
+        )}
       </form>
     </div>
   );
