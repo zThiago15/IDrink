@@ -36,7 +36,7 @@ describe('Testa o correto funcionamento da pagina de Products', () => {
     products.forEach((product, index) => {
       const name = screen.getByTestId(`${dataTestIds[15]}${index}`);
       const price = screen.getByTestId(`${dataTestIds[16]}${index}`);
-      const img = screen.getByTestId(`${dataTestIds[16]}${index}`);
+      const img = screen.getByTestId(`${dataTestIds[17]}${index}`);
 
       expect(price).toBeInTheDocument();
       expect(name).toBeInTheDocument();
