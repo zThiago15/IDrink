@@ -50,7 +50,7 @@ describe('Testa o correto funcionamento da pagina de Login', () => {
     userEvent.type(inputPassword, passwordValid);
     expect(buttonLogin).not.toBeDisabled();
   });
-  it('Verifica se login é feito com sucesso', () => {
+  it('Verifica se login é feito com sucesso', async () => {
     jest.spyOn(mockApi, 'authenticationUser');
     mockApi.authenticationUser.mockReturnValue(mockUser);
     renderWithRouter('/login');
@@ -63,9 +63,12 @@ describe('Testa o correto funcionamento da pagina de Login', () => {
     expect(mockApi.authenticationUser).toBeCalled();
     expect(mockApi.authenticationUser)
       .toHaveBeenCalledWith({ email: mockUser.email, password: passwordValid });
+    const navBar = await screen.findByText('Produtos');
+    expect(navBar).toBeInTheDocument();
   });
   it('Verifica se retorna um alerta ao login ser inválido', async () => {
     jest.spyOn(mockApi, 'authenticationUser');
+    localStorage.clear();
     mockApi.authenticationUser.mockRejectedValue(errorNotFound);
     renderWithRouter('/login');
     const inputEmail = screen.getByTestId('common_login__input-email');

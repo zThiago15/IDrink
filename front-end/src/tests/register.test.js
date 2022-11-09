@@ -63,7 +63,7 @@ describe('Testa o correto funcionamento da pagina de Register', () => {
   });
   it('Verifica se Cadastro é feito com sucesso', async () => {
     jest.spyOn(mockApi, 'newRegister');
-    mockApi.newRegister.mockReturnValue();
+    mockApi.newRegister.mockReturnValueOnce(0);
     renderWithRouter('/register');
     const inputName = screen.getByTestId('common_register__input-name');
     const inputEmail = screen.getByTestId('common_register__input-email');
@@ -80,7 +80,8 @@ describe('Testa o correto funcionamento da pagina de Register', () => {
           email: mockUser.email,
           password: passwordValid },
       );
-    expect(await screen.findByRole('button', { name: /login/i }));
+    const navBar = await screen.findByText('Produtos');
+    expect(navBar).toBeInTheDocument();
   });
   it('Verifica se retorna um alerta ao cadastro ser inválido', async () => {
     jest.spyOn(mockApi, 'newRegister');
