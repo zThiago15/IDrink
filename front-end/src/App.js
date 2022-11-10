@@ -7,6 +7,7 @@ import Products from './pages/Products';
 import Checkout from './pages/Checkout';
 import SellerOrders from './pages/SellerOrders';
 import CustomerOrder from './pages/CustomerOrder';
+import Administrator from './pages/Administrator';
 import SellerOrderDetails from './pages/SellerOrderDetails';
 import CustomerOrderDetails from './pages/CustomerOrderDetails';
 import FlowControl from './components/FlowControl';
@@ -25,6 +26,7 @@ function App() {
         element={ <CustomerOrderDetails /> }
       />
       <Route path="/seller/orders" element={ <SellerOrders /> } />
+      <Route path="/admin/manage" element={ <Administrator /> } />
       <Route
         path="/"
         element={

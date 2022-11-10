@@ -1,15 +1,11 @@
 import datatestids from '../utils/dataTestIds';
 
 export default function NavBar() {
-  const { name, role } = JSON.parse(localStorage.getItem('user'));
-
-  const logout = () => {
-    localStorage.removeItem('user');
-  };
+  const userStorage = JSON.parse(localStorage.getItem('user')) || 'notFound';
 
   return (
     <nav className="flex bg-red-600">
-      {role === 'customer' && (
+      {userStorage.role === 'customer' && (
         <li>
           <a href="/customer/products" data-testid={ datatestids[11] }>
             Produtos
@@ -18,19 +14,27 @@ export default function NavBar() {
       )}
       <li>
         <a
-          href={ role === 'customer' ? '/customer/orders' : '/seller/orders' }
+          href={
+            userStorage.role === 'customer'
+              ? '/customer/orders'
+              : '/seller/orders'
+          }
           data-testid={ datatestids[12] }
         >
-          {role === 'customer' ? 'Meus pedidos' : 'Pedidos'}
+          {userStorage.role === 'customer' ? 'Meus pedidos' : 'Pedidos'}
         </a>
       </li>
       <li>
         <a data-testid={ datatestids[13] } href="#t">
-          {name}
+          {userStorage.name}
         </a>
       </li>
       <li>
-        <a data-testid={ datatestids[14] } href="/login" onClick={ () => logout() }>
+        <a
+          data-testid={ datatestids[14] }
+          href="/login"
+          onClick={ () => localStorage.removeItem('user') }
+        >
           Sair
         </a>
       </li>

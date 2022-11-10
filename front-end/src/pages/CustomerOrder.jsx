@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import { getAllOrders } from '../services/customerOrders';
 import dataTestIds from '../utils/dataTestIds';

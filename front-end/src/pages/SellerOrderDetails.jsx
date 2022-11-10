@@ -1,5 +1,5 @@
-import moment from 'moment';
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 import { useParams } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import { getOrder, changeStatusDB } from '../services/sellerOrders';
