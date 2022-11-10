@@ -5,6 +5,7 @@ import NavBar from '../components/Navbar';
 function Administrator() {
   return (
     <div>
+      <NavBar />
       <AdministratorInput />
     </div>
   );
