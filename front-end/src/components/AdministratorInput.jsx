@@ -7,7 +7,7 @@ export default function RegisterForm() {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('custumer');
   const [error, setError] = useState(false);
 
   const validateForm = () => {
