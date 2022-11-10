@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import adminCreateUser from '../helpers/AdmCreate';
 import dataTestIds from '../utils/dataTestIds';
-import NavBarAdm from './navBarAdm';
+import NavBarAdm from './NavBarAdm';
 
 export default function RegisterForm() {
   const [userName, setUserName] = useState('');
