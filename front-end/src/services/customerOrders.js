@@ -21,4 +21,14 @@ export const createOrder = async (sales) => {
   return response.data;
 };
 
+export const changeStatusDB = async ({ orderId, status }) => {
+  const { token } = JSON.parse(localStorage.getItem('user')) || '';
+  api.defaults.headers.authorization = token;
+  const response = await api.put(`/customer/orders/${orderId}`, {
+    status,
+  });
+
+  return response.data;
+};
+
 export const editStatus = async (id) => id;
