@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { authenticationUser } from '../services/user';
 import { actionUserLogin } from '../redux/userSlice';
 import dataTestIds from '../utils/dataTestIds';
+import imgLogin from '../imgs/login.gif';
 
 export default function Login() {
   const [user, setUser] = useState({
