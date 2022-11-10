@@ -289,13 +289,131 @@
             "content": {
               "application/json": {
                 "schema": {
-                "type": "object",
-                "properties": {
-                  "error": {
-                    "type": "string",
-                    "example": "Product does not exist"
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Product does not exist"
+                    }
                   }
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/orders": {
+      "get": {
+        "summary": "Endpoint que retorna todos os pedidos associados ao cliente",
+        "description": "Endpoint que retorna todos os pedidos associados ao cliente no banco de dados",
+        "tags": ["Customers"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ordersCustomer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Endpoint para criar um pedido",
+        "description": "Este endpoint cria um pedido com as informações fornecidas",
+        "tags": ["Customers"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createOrder"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createdOrder"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/orders/:orderId": {
+      "get": {
+        "summary": "Endpoint que retorna detalhes do pedido passado por parâmetro",
+        "description": "Endpoint que retorna detalhes do pedido passado por parâmetro",
+        "tags": ["Customers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orderDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Endpoint que altera status de um pedido",
+        "description": "Este endpoint altera o status de um pedido passado por parâmetro",
+        "tags": ["Customers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "Pendente"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orderDetails"
                 }
               }
             }
@@ -497,6 +615,68 @@
           "urlImage": {
             "type": "string",
             "example": "http://localhost:3001/images/skol_lata_350ml.jpg"
+          }
+        }
+      },
+      "ordersCustomer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "status": {
+            "type": "string",
+            "example": "Preparando"
+          },
+          "saleDate": {
+            "type": "string",
+            "example": "2022-11-09T19:20:34.000Z"
+          },
+          "totalPrice": {
+            "type": "string",
+            "example": "45.37"
+          }
+        }
+      },
+      "createOrder": {
+        "type": "object",
+        "properties": {
+          "totalPrice": {
+            "type": "string",
+            "example": "45.37"
+          },
+          "seller": {
+            "type": "string",
+            "example": "2"
+          },
+          "deliveryAddress": {
+            "type": "string",
+            "example": "Vale do Silício"
+          },
+          "deliveryNumber": {
+            "type": "number",
+            "example": 58
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Stella Artois 275ml"
+                },
+                "price": {
+                  "type": "string",
+                  "example": "3.49"
+                },
+                "quantity": { 
+                  "type": "number", 
+                  "example": 13 
+                }
+              }
+            }
           }
         }
       }

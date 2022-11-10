@@ -5,8 +5,8 @@ require('express-async-errors');
 const userSellersService = {
   getUserSalles: async () =>
     UserModel.findAll({
-      where: { role: 'seller' },
-      attributes: ['id', 'name'],
+      where: { role: "seller" },
+      attributes: ["id", "name"],
     }),
 
   getAllOrders: async (sellerId) => {
@@ -16,15 +16,22 @@ const userSellersService = {
     const orders = response.reduce(
       (
         acc,
-        { id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber },
+        { id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber }
       ) =>
-        acc.concat({ id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber }),
-      [],
+        acc.concat({
+          id,
+          status,
+          saleDate,
+          totalPrice,
+          deliveryAddress,
+          deliveryNumber,
+        }),
+      []
     );
     return orders;
   },
   changeStatus: async ({ orderId, status }) => {
-   await SalesModel.update(
+    await SalesModel.update(
       {
         status,
       },
@@ -32,8 +39,8 @@ const userSellersService = {
         where: {
           id: orderId,
         },
-      },
-   );
+      }
+    );
     const newOrder = await customerService.getOrder(orderId);
     return newOrder;
   },
