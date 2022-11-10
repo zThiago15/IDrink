@@ -7,7 +7,7 @@ export default function RegisterForm() {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [role, setRole] = useState('custumer');
+  const [role, setRole] = useState('customer');
   const [error, setError] = useState(false);
 
   const validateForm = () => {
@@ -92,7 +92,7 @@ export default function RegisterForm() {
             onChange={ ({ target }) => setRole(target.value) }
           >
             <option value="" disabled hidden>Escolha o tipo</option>
-            <option value="custumer">Consumidor</option>
+            <option value="customer">Consumidor</option>
             <option value="seller">Vendedor</option>
             <option value="administrator">Administrador</option>
           </select>
