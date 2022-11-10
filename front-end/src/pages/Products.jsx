@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import Product from '../components/Product';
-import getProducts from '../services/product';
+import { getProducts } from '../services/product';
 import datatestids from '../utils/dataTestIds';
 
 export default function Products() {
@@ -14,7 +14,6 @@ export default function Products() {
   useEffect(() => {
     const saveProducts = async () => {
       const data = await getProducts(token);
-
       setProducts([...data]);
     };
     saveProducts();

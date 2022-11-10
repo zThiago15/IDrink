@@ -112,7 +112,7 @@ export default function Register() {
           <button
             className="bg-[#f81127] rounded
 text-white drop-shadow-md w-full px-10 py-2
-hover:opacity-80 mb-1 md:text-[21px] text-md cursor-pointer"
+hover:opacity-80 mb-1 md:text-[21px] text-md cursor-pointer disabled:opacity-20"
             type="button"
             disabled={ disabledBtnLogin }
             data-testid={ dataTestIds[9] }

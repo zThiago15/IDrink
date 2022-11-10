@@ -1,6 +1,6 @@
 import api from '.';
 
-const getProducts = async (token) => {
+export const getProducts = async (token) => {
   const response = await api.get('/products', {
     headers: {
       authorization: token,
