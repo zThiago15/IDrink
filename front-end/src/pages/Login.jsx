@@ -134,7 +134,7 @@ export default function Login() {
               type="button"
               data-testid={ dataTestIds[4] }
             >
-              Register
+              Não tenho uma conta
             </button>
           </Link>
         </div>
