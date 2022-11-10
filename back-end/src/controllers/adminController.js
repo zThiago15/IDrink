@@ -7,7 +7,7 @@ const createUser = async (req, res, _next) => {
   return res.status(201).end();
 };
 
-const allUsers = async (req, res, _next) => {
+const allUsers = async (_req, res, _next) => {
   const users = await adminService.allUsers();
   return res.status(200).json(users);
 };

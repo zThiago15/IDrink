@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import moment from 'moment';
+import { useEffect, useState } from 'react';
 import NavBar from '../components/Navbar';
 import dataTestIds from '../utils/dataTestIds';
-import { getOrder } from '../services/customerOrders';
-import { changeStatusDB } from '../services/sellerOrders';
+import { getOrder, changeStatusDB } from '../services/customerOrders';
 
 export default function CustomerOrderDetails() {
   const [orderDetails, setOrderDetails] = useState(false);
