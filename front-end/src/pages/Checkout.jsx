@@ -34,7 +34,6 @@ export default function Checkout() {
 
   return (
     <div>
-      {console.log(useSelector(selectProduct))}
       <NavBar />
       <h1>Checkout</h1>
       <p>Finalizar Pedido</p>
