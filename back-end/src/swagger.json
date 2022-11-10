@@ -329,6 +329,7 @@
         "summary": "Endpoint para criar um pedido",
         "description": "Este endpoint cria um pedido com as informações fornecidas",
         "tags": ["Customers"],
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
