@@ -1,7 +1,7 @@
 const { UserModel } = require('../database/models');
 const ErrorUnauthorized = require('../errors/ErrorUnauthorized');
 
-const isAdmin = async (req, res, next) => {
+const isAdmin = async (_req, res, next) => {
   const { id } = res.locals.user;
   const { role } = await UserModel.findOne({ where: { id } });
   if (role !== 'administrator') {

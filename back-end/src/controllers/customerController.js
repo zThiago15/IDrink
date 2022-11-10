@@ -22,8 +22,9 @@ const getOrder = async (req, res) => {
 };
 
 const changeStatus = async (req, res) => {
-  const { id, status } = req.body;
-  const order = await userSellersService.changeStatus({ id, status });
+  const { status } = req.body;
+  const { orderId } = req.params;
+  const order = await userSellersService.changeStatus({ orderId, status });
   return res.status(200).json(order);
 };
 

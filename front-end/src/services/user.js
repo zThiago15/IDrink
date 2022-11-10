@@ -15,6 +15,6 @@ export const newRegister = async ({ name, email, password }) => {
 };
 
 export const getUserSalles = async () => {
-  const response = await api.get('/seller/getSellers');
+  const response = await api.get('/seller');
   return response;
 };

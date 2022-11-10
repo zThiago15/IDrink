@@ -24,7 +24,7 @@ const userSellersService = {
     return orders;
   },
   changeStatus: async ({ orderId, status }) => {
-   await SalesModel.update(
+    await SalesModel.update(
       {
         status,
       },
@@ -33,7 +33,7 @@ const userSellersService = {
           id: orderId,
         },
       },
-   );
+    );
     const newOrder = await customerService.getOrder(orderId);
     return newOrder;
   },
