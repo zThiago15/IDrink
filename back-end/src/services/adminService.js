@@ -25,7 +25,7 @@ const createUser = async (userInfo) => {
 };
 
 const allUsers = async () => {
-  const users = await UserModel.findAll({ attributes: {exclude: 'id' }});
+  const users = await UserModel.findAll({ attributes: { exclude: 'id' } });
   return users;
 };
 
