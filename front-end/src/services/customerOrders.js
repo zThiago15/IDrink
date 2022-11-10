@@ -15,7 +15,6 @@ export const getAllOrders = async () => {
 };
 
 export const createOrder = async (sales) => {
-  console.log(sales);
   const { token } = JSON.parse(localStorage.getItem('user')) || '';
   api.defaults.headers.authorization = token;
   const response = await api.post('/customer/orders', { sales });
