@@ -6,6 +6,15 @@ export const mockUser = {
 };
 export const passwordValid = '12345678';
 
+export const mockUserAdmin = {
+  name: 'Delivery App Admin',
+  email: 'adm@deliveryapp.com',
+  role: 'administrator',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
+};
+
+export const passwordAdmin = '--adm2@21!!--';
+
 export const errorNotFound = {
   response: {
     status: 404,
