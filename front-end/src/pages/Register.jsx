@@ -58,7 +58,7 @@ export default function Register() {
         className="text-center md:text-5xl text-3xl
       text-[#404140] font-bold tracking-wider"
       >
-        Cadastro
+        Criar conta
       </h1>
       <form
         className="mx-auto flex flex-col md:w-1/2
@@ -118,7 +118,7 @@ hover:opacity-80 mb-1 md:text-[21px] text-md cursor-pointer disabled:opacity-20"
             data-testid={ dataTestIds[9] }
             onClick={ newAccount }
           >
-            Cadastrar
+            Criar conta
           </button>
           <Link to="/login">
             <button

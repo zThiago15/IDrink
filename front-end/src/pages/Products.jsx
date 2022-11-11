@@ -26,7 +26,7 @@ export default function Products() {
   };
 
   return (
-    <div>
+    <div className="container mx-auto w-full min-h-screen min-">
       <NavBar />
       {products.map((product) => (
         <Product
